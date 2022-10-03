@@ -10,12 +10,13 @@ sturoutes.get("/added",async(req,res)=>{
         const order=req.query._order;
         const search =req.query.search || "";
         const page = +req.query.page -1 || 0 
-        const limit = +req.query.limit || 2 
+        const limit = +req.query.limit || 1 
         
 
         console.log(req.query,req.url)
+        console.log(page,limit)
 
-        let data= await studentmodel.find({name:{$regex:search, $options:"i"},}).where("gender").in(gender).sort([[field,order]]).skip(page * limit).limit(limit)
+        let data= await studentmodel.find({name:{$regex:search, $options:"i"}}).where("gender").in(gender).sort([[field,order]]).skip(page * limit ).limit(limit)
 
         const total=await studentmodel.countDocuments({gender,name: { $regex: search, $options: "i" }})
 
