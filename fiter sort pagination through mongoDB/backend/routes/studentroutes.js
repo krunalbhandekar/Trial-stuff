@@ -3,18 +3,19 @@ const sturoutes=express.Router()
 
 const studentmodel=require("../models/student")
 
-sturoutes.get("/added",async(req,res)=>{
+sturoutes.get("/student",async(req,res)=>{
     try{
         const gender=req.query.gender || ["male","female"]
-        const field=req.query._sortBy;
-        const order=req.query._order;
+        const field=req.query.sort;
+        const order=req.query.order;
         const search =req.query.search || "";
-        const page = +req.query.page -1 || 0 
-        const limit = +req.query.limit || 1 
+        const page = parseInt(req.query.page) -1 || 0 
+        const limit = parseInt(req.query.limit) || 5 
         
 
-        console.log(req.query,req.url)
-        console.log(page,limit)
+        console.log(req.query,"q")
+        console.log(req.url,"u")
+        // console.log(page,limit)
 
         let data= await studentmodel.find({name:{$regex:search, $options:"i"}}).where("gender").in(gender).sort([[field,order]]).skip(page * limit ).limit(limit)
 
@@ -37,7 +38,7 @@ sturoutes.get("/added",async(req,res)=>{
     
 })
 
-sturoutes.post("/added",async(req,res)=>{
+sturoutes.post("/add",async(req,res)=>{
     const {name,age,roll,gender}=req.body
   
 
