@@ -6,8 +6,8 @@ const studentmodel=require("../models/student")
 sturoutes.get("/student",async(req,res)=>{
     try{
         const gender=req.query.gender || ["male","female"]
-        const field=req.query.sort;
-        const order=req.query.order;
+        const field=req.query.sort || "_id";
+        const order=req.query.order || "asc";
         const search =req.query.search || "";
         const page = parseInt(req.query.page) -1 || 0 
         const limit = parseInt(req.query.limit) || 5 
