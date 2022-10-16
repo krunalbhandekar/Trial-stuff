@@ -3,5 +3,8 @@
 	{"name":"ajay","subject":"science","marks":50},
 	{"name":"atul","subject":"math","marks":40},
 	{"name":"atul","subject":"english","marks":50},
-	{"name":"atul","subject":"history","marks":90}
+	{"name":"atul","subject":"history","marks":90},
+	{"name":"karan","subject":"history","marks":90},
+	{"name":"rahul","subject":"history","marks":90},
+	{"name":"xavier","subject":"history","marks":90}
 ]
