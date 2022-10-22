@@ -29,11 +29,9 @@ birthdayroute.get("/all",async(req,res)=>{
 birthdayroute.get("/current",async(req,res)=>{
   let fulldate=new Date()
   let month=+fulldate.getUTCMonth();
-  let year=+fulldate.getUTCFullYear()
   let date=+fulldate.getUTCDate()
-  let currentdate=year+"-"+(month+1)+"-"+date
   
-  let data=await BirthdayModel.find({birth_date:currentdate})
+  let data=await BirthdayModel.find({birth_date:date,birth_month:(month+1)})
   return res.send({"data":data})
 })
 
@@ -41,14 +39,14 @@ birthdayroute.get("/current",async(req,res)=>{
 
 birthdayroute.post("/add",async(req,res)=>{
  
-  const {first_name,last_name,birth_date,mobile_no,email,description}=req.body
+  const {first_name,last_name,birth_date,birth_month,mobile_no,email,description}=req.body
   let first=first_name[0].toUpperCase() + first_name.slice(1);
   let last=last_name[0].toUpperCase() + last_name.slice(1);
  
   let friend=await BirthdayModel.findOne({first_name:first,last_name:last})
   
   if(!friend){
-    const data=new BirthdayModel({first_name:first,last_name:last,birth_date,mobile_no,email,description})
+    const data=new BirthdayModel({first_name:first,last_name:last,birth_date,birth_month,mobile_no,email,description})
   await data.save()
   return res.send({"message":"info added succesfully",info:data})
   }else{

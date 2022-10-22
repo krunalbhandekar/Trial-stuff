@@ -28,8 +28,8 @@ axios(config)
        {data.map((e) => {
          return(
            <div key={e._id}>
-         <p>{e.first_name +" "+ e.last_name}</p>
-         <p>{e.birth_date}</p>
+         <p>{e.first_name +"/"+ e.last_name}</p>
+         <p>{e.birth_date +"/"+ e.birth_month}</p>
          <p>{e.email}</p>
           </div>
         )
