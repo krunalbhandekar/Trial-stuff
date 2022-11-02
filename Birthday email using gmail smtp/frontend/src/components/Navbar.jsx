@@ -11,7 +11,8 @@ const Navbar = () => {
       <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
          
-          <Link to="/">Birthday</Link>
+          <Link to="/">Todo</Link>
+          <Link to="/birthday">Birthday</Link>
           <Link to="/all">All</Link>
 
           <Flex alignItems={'center'}>

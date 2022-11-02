@@ -96,4 +96,13 @@ transporter.sendMail(mailOptions, function(error, info){
 
 })
 
+//delete
+
+birthdayroute.delete("/:id",async(req,res)=>{
+ 
+  await BirthdayModel.findByIdAndDelete({_id:req.params.id})
+
+  return res.send({"message":"deleted succesfully"})
+})
+
 module.exports=birthdayroute
