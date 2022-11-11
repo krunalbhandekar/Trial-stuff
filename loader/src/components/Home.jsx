@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import Loader from './Loader'
+import Reactloader from './Reactloader'
 
 const Home = () => {
     const [data, setdata] = useState([])
@@ -23,6 +24,7 @@ const Home = () => {
     if(loading){
         return (
             <Loader/>
+            // <Reactloader/>
         )
     }else{
 
