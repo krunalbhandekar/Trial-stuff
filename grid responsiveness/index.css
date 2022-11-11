@@ -1,0 +1,14 @@
+.container{
+    width: 70%;
+    margin: auto;
+    border: 1px solid red;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(10rem,1fr));
+  /* grid-auto-rows: 10rem; */
+  gap: 10px;
+}
+.div{
+    background-color: red;
+    height: 10rem;
+}
+
