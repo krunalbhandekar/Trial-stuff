@@ -1,0 +1,6 @@
+const rating=stars=>`*****`.slice(5-stars,10-stars)
+console.log('rating:', rating(1))
+console.log('rating:', rating(2))
+console.log('rating:', rating(3))
+console.log('rating:', rating(4))
+console.log('rating:', rating(5))
