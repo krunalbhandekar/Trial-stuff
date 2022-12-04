@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chat app</title>
+        <!-- <scrip src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.4/socket.io.js" integrity="sha512-YeeA/Qxn5hYdkukScTCNNOhTrv1C2RubAGButJ1rmgQwZf/HdRaCGl+JAVkqsqaNRaYNHdheiuKKuPf9mDcqKg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+        </script> -->
+        <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <div id="messages"></div>
+        <form id="chatform">
+            <input autocomplete="off" type="text" id="chatinput">
+            <button type="submit">send</button>
+        </form>
+        <script>
+            const ws=io()
+            const form=document.getElementById("chatform")
+            const input=document.getElementById("chatinput")
+            const messages=document.getElementById("messages")
+
+            form.addEventListener("submit",function(e){
+                e.preventDefault()
+                ws.emit("newMessage",input.value)
+                input.value=""
+            })
+
+            ws.on("newMessage",function(msg){
+                const div=document.createElement("div")
+                div.innerText=msg
+                messages.appendChild(div)
+            })
+
+            ws.on("history",function(h){
+                console.log("history",h);
+                for(const msg of h){
+                    const div = document.createElement("div")
+                    div.innerText = msg
+                    messages.appendChild(div)
+
+                }
+
+            })
+
+            ws.on("newUser",()=>{
+                alert("new user joined")
+            })
+        </script>
+    </body>
+</html>
